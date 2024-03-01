@@ -1,0 +1,50 @@
+models:
+  - name: episodes
+    description: One record per episode; an episode is journey of care between a member and practitioner. An episode
+      exists as part of a specific program, based on what the member is consulting for. An episode has an outcome
+      indicating the service provided to the member
+    columns:
+      - name: episode_id
+        description: The unique identifier of the episode
+      - name: organization_id
+        description: The unique identifier of the organization to which this member belongs to
+      - name: episode_created_at
+        description: Timestamp, in UTC, indicating when the episode was created by the member
+      - name: program
+        description: The program for which the member is consulting for (Primary Care, Mental Health or EAP)
+      - name: outcome
+        description: The outcome associated to this episode, indicating the service provided to the member
+
+  - name: organizations_monthly
+    description: One record per organization per month, with additional information about the organization's
+      service plan
+    columns:
+      - name: date_month
+        description: The timestamp, in UTC, of the month of the corresponding record; the timestamp of a month is 
+          defined by the first day of the month
+      - name: organization_id
+        description: The unique identifier of the organization to which this member belongs to
+      - name: eligble_members
+        description: The number of members eligible to this organization, on the given month
+      - name: pepm
+        description: The agreed upon price charged for the services provided for the given organization; price is
+          on a per-employee-per-month basis
+      - name: has_primary_care_since
+        description: The timestamp, in UTC, at which the organization gained access to our Primary Care program
+      - name: has_mental_health_since
+        description: The timestamp, in UTC, at which the organization gained access to our Mental Health+ program
+      - name: has_eap_since
+        description: The timestamp, in UTC, at which the organization gained access to our EAP program
+    
+  - name: cost_to_serve_monthly
+    description: Cost to serve values, in Canadian dollar, per month; cost to serve indicates the cost to serve for one
+      episode, and is split by program
+      - name: date_month
+        description: The timestamp, in UTC, of the month of the corresponding record; the timestamp of a month is 
+          defined by the first day of the month
+      - name: cost_to_serve_primary_care
+        description: The average cost, in Canadian dollars, of one Primary Care episode
+      - name: cost_to_serve_mental_health
+        description: The average cost, in Canadian dollars, of one Mental Health+ episode
+      - name: cost_to_serve_eap
+        description: The average cost, in Canadian dollars, of one EAP episode
